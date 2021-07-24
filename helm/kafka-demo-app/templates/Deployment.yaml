@@ -43,7 +43,7 @@ spec:
           imagePullPolicy: {{ .Values.kafkaDemoService.image.pullPolicy }}
           env:
             - name: LOG_LEVEL
-              value: "trace"
+              value: "debug"
             - name: TOPIC1
               value: "foo-topic"
             - name: TOPIC2
@@ -96,7 +96,7 @@ spec:
           imagePullPolicy: {{ .Values.kafkaDemoService.image.pullPolicy }}
           env:
             - name: LOG_LEVEL
-              value: "trace"
+              value: "debug"
             - name: TOPIC1
               value: "bar-topic"
             - name: TOPIC2

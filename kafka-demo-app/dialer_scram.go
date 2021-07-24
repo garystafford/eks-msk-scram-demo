@@ -65,7 +65,11 @@ func getCredentials() credentials {
 func saslScramDialer() *kafka.Dialer {
 	credentials := getCredentials()
 
-	mechanism, err := scram.Mechanism(scram.SHA512, credentials.username, credentials.password)
+	mechanism, err := scram.Mechanism(
+		scram.SHA512, 
+		credentials.username, 
+		credentials.password
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
