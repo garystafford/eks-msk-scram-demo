@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-client-msk
+  labels:
+    app: kafka-client-msk
+    component: service
+spec:
+  replicas: {{ .Values.kafkaClientMSK.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: kafka-client-msk
+      component: service
+  template:
+    metadata:
+      labels:
+        app: kafka-client-msk
+        component: service
+    spec:
+      serviceAccountName: {{ .Values.kafkaClientMSK.serviceAccountName }}
+      containers:
+        - image: {{ .Values.kafkaClientMSK.image.image }}
+          name: kafka-client-msk
+          imagePullPolicy: {{ .Values.kafkaClientMSK.image.pullPolicy }}
+          command: [ "/bin/sh" ]
+          args: [ "-c", "tail -f /dev/null" ]

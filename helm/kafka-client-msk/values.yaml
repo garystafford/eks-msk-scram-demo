@@ -1,0 +1,8 @@
+
+
+kafkaClientMSK:
+  serviceAccountName: kafka-client-msk-sasl-scram-serviceaccount
+  replicaCount: 1
+  image:
+    image: garystafford/kafka-client-msk:1.0.1
+    pullPolicy: IfNotPresent
