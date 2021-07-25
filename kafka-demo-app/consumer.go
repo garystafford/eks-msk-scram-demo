@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/segmentio/kafka-go"
 )
 
@@ -24,9 +23,9 @@ func consume(ctx context.Context) {
 		// the `ReadMessage` method blocks until we receive the next event
 		msg, err := r.ReadMessage(ctx)
 		if err != nil {
-			panic("could not read message " + err.Error())
+			log.Panicf("%v could not read message: %v", getHostname(), err.Error())
 		}
 		// after receiving the message, log its value
-		fmt.Println("received: ", string(msg.Value))
+		log.Debugf("%v received message: %v", getHostname(), string(msg.Value))
 	}
 }

@@ -1,24 +1,38 @@
+// Purpose: Demonstration Amazon EKS/MSK application
+// Author: Gary A. Stafford
+// Date: 20201-07-24
+
 package main
 
 import (
 	"context"
+	"os"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	lrf "github.com/banzaicloud/logrus-runtime-formatter"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
 var (
-	logLevel = getEnv("LOG_LEVEL", "info")
-	topic1   = getEnv("TOPIC1", "foo-topic")
-	topic2   = getEnv("TOPIC2", "bar-topic")
-	group    = getEnv("GROUP", "consumer-group-A")
-	brokers  []string
-	log      = logrus.New()
-	sess     = &session.Session{}
-	region       = "us-east-1"
+	logLevel    = getEnv("LOG_LEVEL", "info")
+	topic1      = getEnv("TOPIC1", "foo-topic")
+	topic2      = getEnv("TOPIC2", "bar-topic")
+	group       = getEnv("GROUP", "consumer-group-A")
+	brokers     []string
+	log         = logrus.New()
+	sess        = &session.Session{}
+	region      = "us-east-1"
+	messageFreq = getEnv("MSG_FREQ", "60") // seconds
 )
+
+func getHostname() string {
+	hostname, err := os.Hostname()
+	if err != nil {
+		log.Error(err)
+	}
+	return hostname
+}
 
 func getEnv(key, fallback string) string {
 	if value, ok := os.LookupEnv(key); ok {

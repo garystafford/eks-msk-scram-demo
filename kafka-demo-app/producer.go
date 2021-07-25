@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"github.com/segmentio/kafka-go"
 	"strconv"
 	"time"
+
+	"github.com/segmentio/kafka-go"
 )
 
 func produce(ctx context.Context) {
@@ -31,16 +31,17 @@ func produce(ctx context.Context) {
 		err := w.WriteMessages(ctx, kafka.Message{
 			Key: []byte(strconv.Itoa(i)),
 			// create an arbitrary message payload for the value
-			Value: []byte("this is message: " + strconv.Itoa(i)),
+			Value: []byte("This is message " + strconv.Itoa(i) + " from host " + getHostname()),
 		})
 		if err != nil {
-			panic("could not write message " + err.Error())
+			log.Panicf("%v could not write message: %v", getHostname(), err.Error())
 		}
 
 		// log a confirmation once the message is written
-		fmt.Println("writes: ", i)
+		log.Debugf("%v - total writes: %v", getHostname(), i)
 		i++
-		// sleep for a second
-		time.Sleep(60 * time.Second)
+		// sleep for a x seconds
+		msgFreq, _ := strconv.Atoi(messageFreq)
+		time.Sleep(time.Duration(msgFreq))
 	}
 }

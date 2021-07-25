@@ -1,9 +1,9 @@
 
 kafkaDemoService:
   serviceAccountName: kafka-demo-app-sasl-scram-serviceaccount
-  replicaCount: 2
+  replicaCount: 3
   image:
-    image: garystafford/kafka-demo-service:1.1.0-scram
+    image: garystafford/kafka-demo-service:1.2.2-scram
     pullPolicy: IfNotPresent
     ports:
       containerPort: 8080
