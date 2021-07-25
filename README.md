@@ -1,9 +1,9 @@
-# Terraform, Amazon MSK, Amazon EKS Demo
+# Amazon MSK, Amazon EKS, SASL/SCRAM Demo
 
-Terraform project for using Amazon Managed Streaming for Apache Kafka (Amazon MSK) from Amazon Elastic Kubernetes Service (Amazon EKS) using SASL/SCRAM.
+Terraform project for the post: [Securely Decoupling Microservices on Amazon EKS using Kafka with SASL/SCRAM
+Securely decoupling Go-based microservices on Amazon EKS using Amazon MSK with SASL/SCRAM, data encryption, and IRSA](#)
 
-_Work in progress..._
-
+This post explores a simple Go-based application deployed to Amazon Elastic Kubernetes Service (Amazon EKS). The microservices that comprise the application communicate asynchronously by producing and consuming events from Amazon Managed Streaming for Apache Kafka (Amazon MSK).
 
 ## Architecture
 
