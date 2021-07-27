@@ -52,6 +52,8 @@ spec:
               value: "consumer-group-A"
             - name: MSG_FREQ
               value: "10"
+            - name: AWS_REGION
+              value: "us-east-1"
 ---
 apiVersion: v1
 kind: Service
@@ -107,3 +109,5 @@ spec:
               value: "consumer-group-B"
             - name: MSG_FREQ
               value: "10"
+            - name: AWS_REGION
+              value: "us-east-1"
