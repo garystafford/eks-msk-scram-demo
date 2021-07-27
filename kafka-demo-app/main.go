@@ -16,14 +16,14 @@ import (
 
 var (
 	logLevel    = getEnv("LOG_LEVEL", "info")
-	topic1      = getEnv("TOPIC1", "foo-topic")
-	topic2      = getEnv("TOPIC2", "bar-topic")
-	group       = getEnv("GROUP", "consumer-group-A")
+	topic1      = getEnv("TOPIC1", "foo.topic")
+	topic2      = getEnv("TOPIC2", "bar.topic")
+	group       = getEnv("GROUP", "default-consumer-group")
+	messageFreq = getEnv("MSG_FREQ", "60")          // seconds
+	region      = getEnv("AWS_REGION", "us-east-1") // seconds
 	brokers     []string
 	log         = logrus.New()
 	sess        = &session.Session{}
-	region      = "us-east-1"
-	messageFreq = getEnv("MSG_FREQ", "60") // seconds
 )
 
 func getHostname() string {

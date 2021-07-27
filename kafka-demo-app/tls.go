@@ -1,3 +1,5 @@
+// Reference: https://github.com/segmentio/kafka-go/blob/master/dialer_test.go
+
 package main
 
 import (
