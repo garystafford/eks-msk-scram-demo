@@ -5,6 +5,16 @@ resource "aws_iam_policy" "kafka_client_msk_policy" {
     "Version" : "2012-10-17",
     "Statement" : [
       {
+        Effect: "Allow",
+        Action: "kafka-cluster:*",
+        Resource: [
+            "arn:aws:kafka:${var.region}:${data.aws_caller_identity.current.account_id}:group/*/*/*",
+            "arn:aws:kafka:${var.region}:${data.aws_caller_identity.current.account_id}:topic/*/*/*",
+            "arn:aws:kafka:${var.region}:${data.aws_caller_identity.current.account_id}:cluster/*/*",
+            "arn:aws:kafka:${var.region}:${data.aws_caller_identity.current.account_id}:transactional-id/*/*/*"
+        ]
+      },
+      {
         Effect : "Allow",
         Action: [
           "kafka:ListTagsForResource",
